@@ -4,25 +4,17 @@ import { Link, useLocation } from "react-router-dom";
 import { HomeIcon, Banknote, History, Send } from "lucide-react";
 
 export function TransactionHistory() {
-  const [selectedAccount, setSelectedAccount] = useState("Plaid Checking");
+  const [selectedAccount, setSelectedAccount] = useState("Account_1");
 
   const accounts = [
-    { name: "Plaid Checking", balance: 320 },
+    { name: "Account_1", balance: 320 },
     
   ];
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md flex flex-col">
-        <div className="px-6 py-6 font-bold text-lg text-blue-600">UserAccount</div>
-        <nav className="flex flex-col gap-2 px-4">
-          <SidebarItem icon={<HomeIcon size={18} />} label="Home" to="/home" />
-          <SidebarItem icon={<Banknote size={18} />} label="My Bank" to="/mybanks" />
-          <SidebarItem icon={<History size={18} />} label="Transactions" to="/transactions" />
-          <SidebarItem icon={<Send size={18} />} label="Transfer Funds" to="/transfer" />
-        </nav>
-      </aside>
+     
+      
 
       {/* Main Content */}
       <div className="flex flex-col w-full h-screen">
@@ -50,7 +42,7 @@ export function TransactionHistory() {
           <div className="bg-blue-600 text-white rounded-lg p-4 flex justify-between items-center">
             <div>
               <h2 className="text-lg font-bold">{selectedAccount}</h2>
-              <p className="text-sm">Plaid Gold Standard 0% Interest Checking</p>
+              <p className="text-sm">Account Gold Standard 0% Interest Checking</p>
               <p className="text-sm mt-1">•••• •••• •••• 0000</p>
             </div>
             <p className="text-xl font-bold">
@@ -89,20 +81,3 @@ export function TransactionHistory() {
   );
 }
 
-// SidebarItem with active route check
-function SidebarItem({ icon, label, to }) {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-
-  return (
-    <Link
-      to={to}
-      className={`flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer ${
-        isActive ? "bg-blue-100 text-blue-600" : "text-gray-600"
-      }`}
-    >
-      {icon}
-      <span>{label}</span>
-    </Link>
-  );
-}
